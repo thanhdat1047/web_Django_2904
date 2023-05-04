@@ -42,7 +42,7 @@ def logoutPage(request):
 
 def home(request):
     if request.user.is_authenticated:  # user dang nhap r
-        customer = request.user.customer
+        customer = request.user
         order, create = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -58,7 +58,7 @@ def home(request):
 
 def cart(request):
     if request.user.is_authenticated:  # user dang nhap r
-        customer = request.user.customer
+        customer = request.user
         order, create = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -73,7 +73,7 @@ def cart(request):
 
 def checkout(request):
     if request.user.is_authenticated:  # user dang nhap r
-        customer = request.user.customer
+        customer = request.user
         order, create = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -94,7 +94,7 @@ def updateItem(request):
 
     productId = data['productId']
     action = data['action']
-    customer = request.user.customer
+    customer = request.user
     product = Product.objects.get(id=productId)
     order, create = Order.objects.get_or_create(
         customer=customer, complete=False)
